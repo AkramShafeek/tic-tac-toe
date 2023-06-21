@@ -38,31 +38,6 @@
   height: 50px;
 }
 
-button {
-  font-weight: 900;
-  font-size: 15px;
-  width: 150px;
-  height: 50px;
-  border-radius: 10px;
-  border: none;
-  background: #393257;
-  box-shadow: 6px 6px 12px #13111c,
-    -6px -6px 12px #1d192c;
-  color: #8978ce;
-  transition: all 100ms;
-}
-
-button:hover {
-  cursor: pointer;
-  
-}
-
-button:active {
-  box-shadow: none;
-  color: #685b9c;
-  transform: translateY(2px);  
-}
-
 .cell:hover {
   cursor: pointer;
   background-color: rgb(49, 105, 211);

@@ -1,0 +1,12 @@
+input.name{
+  width: 250px;
+  height: 50px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-size: large;
+  text-align: center;
+  color: #8978ce;
+}

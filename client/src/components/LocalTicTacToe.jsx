@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import '../styles/tictactoe.css'
 import winCheck from "../utils/winCheck";
-const TicTacToe = () => {
+const LocalTicTacToe = () => {
   const matrix = [["", "", ""], ["", "", ""], ["", "", ""]];
   const [gameMatrix, setGameMatrix] = useState(matrix);
   const [chance, setChance] = useState('X');
@@ -61,9 +61,15 @@ const TicTacToe = () => {
           )
         })}
       </div>
-      <button type="button" onClick={reset} style={{ visibility: isGameOver ? 'visible' : 'hidden' }}>RESET</button>
+      <button
+        type="button"
+        className="primary"
+        onClick={reset}
+        style={{ visibility: isGameOver ? 'visible' : 'hidden' }}>
+        RESET
+      </button>
     </div>
   )
 }
 
-export default TicTacToe;
+export default LocalTicTacToe;
