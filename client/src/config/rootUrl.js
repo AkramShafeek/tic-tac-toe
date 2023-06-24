@@ -1,1 +1,1 @@
-export const rootUrl = 'http://192.168.43.215:4000';
+export const rootUrl = process.env.NODE_ENV === 'development' ? 'http://192.168.43.215:4000' : process.env.SERVER_URI;

@@ -1,38 +1,46 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../Context";
 import { useNavigate } from "react-router-dom";
+import ShortUniqueId from "short-unique-id";
 
 const Online = () => {
   const [name, setName] = useState('');
   const [isJoinRoom, setIsJoinRoom] = useState(false);
   const [joiningRoom, setJoiningRoom] = useState('');
-  const { roomId, setRoomId } = useContext(Context);
+  const { roomStats, setRoomStats } = useContext(Context);
+  const uid = new ShortUniqueId({ length: 6 });
   const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
   }
   const handleJoinRoomClick = () => {
-    if (!name) {
-      console.log("Enter name first");
-      return;
-    }
+    // if (!name) {
+    //   console.log("Enter name first");
+    //   return;
+    // }
     setIsJoinRoom(true);
   }
   const handleCreateRoomClick = () => {
-    if (!name) {
-      console.log("Enter name first");
-      return;
-    }
-    setRoomId("mysecretwakandaroom");
+    // if (!name) {
+    //   console.log("Enter name first");
+    //   return;
+    // }
+    const newRoomStats = { ...roomStats };
+    newRoomStats.isCreateRoom = true;
+    newRoomStats.roomId = uid();
+    setRoomStats(newRoomStats);
     navigate('/onlinegame');
   }
   const handleJoinRoom = () => {
-    if (!name || !joiningRoom) {
+    if (!joiningRoom) {
       console.log("Enter all inputs")
       return;
     }
-    setRoomId(joiningRoom);
+    const newRoomStats = { ...roomStats };
+    newRoomStats.isCreateRoom = false;
+    newRoomStats.roomId = joiningRoom;
+    setRoomStats(newRoomStats);
     navigate('/onlinegame');
   }
   const handleRoomInput = (event) => {
@@ -41,7 +49,8 @@ const Online = () => {
 
   return (
     <div className="d-flex f-col align-items-center gap-2">
-      <input type="text" className="name" placeholder="Enter your name" value={name} onChange={handleNameChange} />
+      {roomStats.err && <p className="status">room doesn't exist</p>}
+      {/* <input type="text" className="name" placeholder="Enter your name" value={name} onChange={handleNameChange} /> */}
       {isJoinRoom && <input type="text" className="name" placeholder="Enter room id" value={joiningRoom} onChange={handleRoomInput} />}
       {isJoinRoom && <button type="button" className="primary" onClick={handleJoinRoom}>Join</button>}
       {isJoinRoom && <button type="button" className="primary" onClick={() => { setIsJoinRoom(false) }}>Cancel</button>}

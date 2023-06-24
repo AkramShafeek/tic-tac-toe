@@ -9,7 +9,7 @@ import { useState } from "react";
 import OnlineGame from "./components/OnlineTicTacToe";
 
 function App() {
-  const [roomId, setRoomId] = useState("");
+  const [roomStats, setRoomStats] = useState({ isCreateRoom: false, roomId: "" });
   const style = {
     position: 'absolute',
     top: '50%',
@@ -17,7 +17,7 @@ function App() {
     transform: 'translate(-50%,-50%)'
   }
   return (
-    <Context.Provider value={{ roomId, setRoomId }}>
+    <Context.Provider value={{ roomStats, setRoomStats }}>
       <BrowserRouter>
         <div style={style}>
           <Routes>

@@ -1,3 +1,8 @@
 import { createContext } from "react";
 
-export const Context = createContext("");
+
+const roomStats = {
+  isCreateRoom: false,
+  roomId: ""
+}
+export const Context = createContext({ roomStats });
